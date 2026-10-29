@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дивеевский паломник — гостевой дом в Дивеево</title>
+<meta name="description" content="Гостевой дом «Дивеевский паломник» в селе Дивеево: четыре комнаты с собственным санузлом, общая кухня, парковка. 15–20 минут пешком по набережной до Серафимо-Дивеевского монастыря. Онлайн-бронирование без предоплаты.">
+<meta property="og:title" content="Дивеевский паломник — гостевой дом в Дивеево">
+<meta property="og:description" content="Четыре комнаты в 15 минутах пешком от монастыря. Бронирование онлайн без предоплаты.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1d2b33">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" as="image" href="img/hero.jpg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="top" data-top>
+  <div class="top__in">
+    <a class="brand" href="#" aria-label="Дивеевский паломник — на главную">
+      <svg class="brand__mark" viewBox="0 0 40 48" aria-hidden="true"><use href="#dome"/></svg>
+      <span class="brand__name">Дивеевский паломник<small>гостевой дом</small></span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#dom">О доме</a>
+      <a href="#komnaty">Комнаты</a>
+      <a href="#diveevo">Дивеево рядом</a>
+      <a href="#doroga">Как добраться</a>
+      <a href="#kontakty">Контакты</a>
+    </nav>
+    <a class="top__phone" href="tel:+79302848469">+7 930 284-84-69</a>
+    <a class="btn btn--gold top__cta" href="booking.html">Забронировать</a>
+    <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu" data-burger><span></span><span></span></button>
+  </div>
+  <div class="menu" id="menu" hidden data-menu>
+    <a href="#dom">О доме</a>
+    <a href="#komnaty">Комнаты</a>
+    <a href="#diveevo">Дивеево рядом</a>
+    <a href="#doroga">Как добраться</a>
+    <a href="#kontakty">Контакты</a>
+    <a class="menu__phone" href="tel:+79302848469">+7 930 284-84-69</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__media" aria-hidden="true">
+    <img src="img/hero.jpg" alt="" width="1280" height="853" fetchpriority="high">
+  </div>
+  <div class="hero__shade" aria-hidden="true"></div>
+
+  <div class="hero__body">
+    <h1 class="hero__title" id="hero-title">
+      <span class="hero__line">Дивеевский</span>
+      <span class="hero__line">паломник</span>
+    </h1>
+  </div>
+
+  <p class="hero__lead">Гостевой дом у набережной в селе Дивеево. До Серафимо-Дивеевского монастыря — 15–20&nbsp;минут неспешной прогулки.</p>
+
+  <form class="search" action="booking.html" method="get" data-search>
+    <label class="search__field">
+      <span>Заезд</span>
+      <input type="date" name="from" required data-from>
+    </label>
+    <label class="search__field">
+      <span>Выезд</span>
+      <input type="date" name="to" required data-to>
+    </label>
+    <div class="search__field search__field--guests">
+      <span id="guests-label">Гостей</span>
+      <div class="stepper" role="group" aria-labelledby="guests-label">
+        <button type="button" aria-label="Меньше гостей" data-step="-1">−</button>
+        <output data-guests aria-live="polite">2</output>
+        <button type="button" aria-label="Больше гостей" data-step="1">+</button>
+      </div>
+    </div>
+    <button class="btn btn--gold search__go" type="submit">Показать свободные комнаты</button>
+    <p class="search__note">Без предоплаты: оплата при заселении</p>
+  </form>
+</section>
+
+<section class="about" id="dom" aria-labelledby="about-title">
+  <div class="wrap about__grid">
+    <div class="about__text">
+      <h2 id="about-title">Дом, где отдыхают после дороги и молитвы</h2>
+      <p>«Дивеевский паломник» — двухэтажный гостевой дом на улице Заречной. Здесь останавливаются, когда приезжают к батюшке Серафиму: на день-два или на неделю, семьёй, с друзьями или вдвоём.</p>
+      <p>Утром можно пройти к монастырю по набережной, мимо пруда, — 15–20 минут пешком или 5 минут на машине. Вечером вернуться в тишину, приготовить ужин на общей кухне и выспаться на свежем белье.</p>
+      <ul class="facts">
+        <li><svg aria-hidden="true"><use href="#i-bed"/></svg>Четыре комнаты на 2 и 4 гостя</li>
+        <li><svg aria-hidden="true"><use href="#i-bath"/></svg>У каждой комнаты свой санузел с душем</li>
+        <li><svg aria-hidden="true"><use href="#i-pot"/></svg>Просторная кухня на первом этаже</li>
+        <li><svg aria-hidden="true"><use href="#i-car"/></svg>Бесплатная парковка у дома</li>
+        <li><svg aria-hidden="true"><use href="#i-wifi"/></svg>Wi-Fi во всём доме</li>
+        <li><svg aria-hidden="true"><use href="#i-wash"/></svg>Стиральная и сушильная машины, утюг</li>
+      </ul>
+    </div>
+    <figure class="about__photos">
+      <img class="about__p1" src="img/room2-1.jpg" alt="Четырёхместная комната под скатом крыши: кровать и диван" loading="lazy" width="1200" height="900">
+      <img class="about__p2" src="img/tower.jpg" alt="Колокольня Дивеевского монастыря" loading="lazy" width="1600" height="1443">
+    </figure>
+  </div>
+</section>
+
+<section class="rooms" id="komnaty" aria-labelledby="rooms-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="rooms-title">Комнаты</h2>
+      <p>Цены за комнату за ночь, а не за человека. Питание не входит — на кухне есть всё, чтобы готовить самим.</p>
+    </div>
+    <div class="rooms__list" data-rooms></div>
+  </div>
+</section>
+
+<section class="steps" aria-labelledby="steps-title">
+  <div class="wrap">
+    <h2 id="steps-title">Как забронировать</h2>
+    <ol class="steps__list">
+      <li><h3>Выберите даты</h3><p>Нажмите «Забронировать» и укажите, когда приедете и сколько вас.</p></li>
+      <li><h3>Выберите комнату</h3><p>Система покажет свободные комнаты и цену за все ночи. Оставьте имя и телефон.</p></li>
+      <li><h3>Приезжайте</h3><p>Бронь подтверждается сразу. Предоплата не нужна — оплата при заселении.</p></li>
+    </ol>
+    <a class="btn btn--gold" href="booking.html">Забронировать</a>
+  </div>
+</section>
+
+<section class="kitchen" aria-labelledby="kitchen-title">
+  <div class="wrap kitchen__grid">
+    <h2 id="kitchen-title">Что есть в доме для всех</h2>
+    <dl class="kitchen__list">
+      <div><dt>Кухня</dt><dd>Плита с духовкой, микроволновка, холодильник, чайник, посуда и приборы, обеденный стол. Чай и кофе.</dd></div>
+      <div><dt>Стирка</dt><dd>Стиральная и сушильная машины — скажите хозяевам. Утюг и гладильная доска на этаже.</dd></div>
+      <div><dt>Сон</dt><dd>Плотные шторы, обогреватель, москитные сетки, свежее бельё и полотенца, тапочки.</dd></div>
+      <div><dt>Машина</dt><dd>Открытая парковка рядом с домом, бесплатно.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="place" id="diveevo" aria-labelledby="place-title">
+  <div class="pond" data-pond>
+    <img class="pond__img" src="img/pond.jpg" alt="Дивеевский монастырь над прудом на закате" loading="lazy" width="2400" height="1493">
+    <div class="pond__shade" aria-hidden="true"></div>
+    <div class="pond__body">
+      <h2 class="pond__title" id="place-title">Дивеево рядом</h2>
+      <div class="pond__reflect" aria-hidden="true">Дивеево рядом</div>
+      <p>Четвёртый удел Богородицы. От дома до монастыря — прогулка вдоль пруда, в котором отражаются купола.</p>
+    </div>
+  </div>
+  <div class="strip" data-strip tabindex="0" aria-label="Фотографии Дивеева, листайте в сторону">
+    <figure><img src="img/place-1.jpg" alt="Соборы Дивеевского монастыря" loading="lazy" width="1600" height="1053"><figcaption>Соборы монастыря</figcaption></figure>
+    <figure><img src="img/place-3.jpg" alt="Колокольня монастыря на фоне розового неба" loading="lazy" width="1600" height="1361"><figcaption>Колокольня</figcaption></figure>
+    <figure><img src="img/place-4.jpg" alt="Монастырь отражается в пруду" loading="lazy" width="1600" height="1047"><figcaption>Отражение в пруду</figcaption></figure>
+    <figure><img src="img/place-5.jpg" alt="Собор вечером, при луне" loading="lazy" width="1600" height="1217"><figcaption>Вечер у собора</figcaption></figure>
+    <figure><img src="img/place-6.jpg" alt="Монастырский сад с деревянными крестами" loading="lazy" width="1600" height="1067"><figcaption>Монастырский сад</figcaption></figure>
+  </div>
+  <div class="wrap place__cols">
+    <div>
+      <h3>Монастырь</h3>
+      <p>Свято-Троицкий Серафимо-Дивеевский женский монастырь: мощи преподобного Серафима Саровского, Троицкий и Преображенский соборы, Святая Канавка.</p>
+    </div>
+    <div>
+      <h3>Источники</h3>
+      <p>В окрестностях — святые источники с купальнями: батюшки Серафима, Казанской иконы Божией Матери, Иверский. До ближних — несколько минут на машине.</p>
+    </div>
+    <div>
+      <h3>Саров и окрестности</h3>
+      <p>Хозяева подскажут, куда съездить, в какое время меньше людей и как спланировать день.</p>
+    </div>
+  </div>
+</section>
+
+<section class="road" id="doroga" aria-labelledby="road-title">
+  <div class="wrap road__grid">
+    <div class="road__text">
+      <h2 id="road-title">Как добраться</h2>
+      <p class="road__addr">Нижегородская область, село Дивеево, ул.&nbsp;Заречная,&nbsp;399</p>
+      <h3>На машине</h3>
+      <p>Вбейте в навигатор адрес дома. Парковка бесплатная, прямо у дома.</p>
+      <h3>На автобусе</h3>
+      <p>Автобусы до Дивеева идут из Нижнего Новгорода и Арзамаса. Напишите хозяевам заранее — подскажут, как дойти от остановки.</p>
+      <h3>Пешком до монастыря</h3>
+      <p>15–20 минут по набережной вдоль пруда. На карте метка — наш дом, монастырь — к северу, за прудом.</p>
+      <a class="btn btn--line" href="https://yandex.ru/maps/?rtext=~55.02346%2C43.24528&amp;rtt=auto" target="_blank" rel="noopener">Построить маршрут в Яндекс Картах</a>
+    </div>
+    <div class="road__map">
+      <iframe title="Дом на карте" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=43.2280%2C55.0190%2C43.2600%2C55.0460&amp;layer=mapnik&amp;marker=55.02346%2C43.24528"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="rules" aria-labelledby="rules-title">
+  <div class="wrap">
+    <h2 id="rules-title">Порядок в доме</h2>
+    <div class="rules__grid">
+      <div><h3>Заезд и выезд</h3><p>Заезд с 14:00, выезд до 12:00. Ранний заезд — по договорённости, если комната свободна.</p></div>
+      <div><h3>Оплата</h3><p>Предоплата не нужна: бронь подтверждается сразу, платите при заселении.</p></div>
+      <div><h3>Тишина</h3><p>Дом для отдыха паломников. Просим не шуметь после 22:00 и не курить в доме.</p></div>
+      <div><h3>Дети</h3><p>С детьми — пожалуйста. Четырёхместные комнаты с диваном удобны для семьи.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontakty" aria-labelledby="contact-title">
+  <div class="contact__media" aria-hidden="true"><img src="img/evening.jpg" alt="" loading="lazy" width="1600" height="1071"></div>
+  <div class="wrap contact__body">
+    <h2 id="contact-title">Ждём вас в Дивеево</h2>
+    <p>Звоните или пишите — ответим на вопросы и поможем выбрать комнату.</p>
+    <a class="contact__phone" href="tel:+79302848469">+7 930 284-84-69</a>
+    <div class="contact__links">
+      <a class="btn btn--gold" href="booking.html">Забронировать онлайн</a>
+      <a class="btn btn--ghost" href="https://wa.me/79302848469" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      <a class="btn btn--ghost" href="https://www.instagram.com/diveevo_palomnik/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p>© <span data-year>2026</span> Гостевой дом «Дивеевский паломник». Дивеево, ул. Заречная, 399</p>
+    <p class="foot__credits">Фото Дивеева: Олег Володин (общественное достояние); «Отражение в пруду» — Г. Новинская, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ru" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Источник: Wikimedia Commons.</p>
+  </div>
+</footer>
+
+<a class="float-book" href="booking.html" data-float>Забронировать</a>
+
+<dialog class="lightbox" data-lightbox aria-label="Фото комнаты">
+  <img alt="" data-lightbox-img>
+  <button type="button" class="lightbox__close" aria-label="Закрыть" data-lightbox-close>×</button>
+  <button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущее фото" data-lightbox-step="-1">‹</button>
+  <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Следующее фото" data-lightbox-step="1">›</button>
+</dialog>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true">
+  <defs>
+    <filter id="ripple" x="-5%" y="-20%" width="110%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.09" numOctaves="2" seed="3" result="n" data-turb/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <symbol id="dome" viewBox="0 0 40 48"><path d="M20 1v7M17 4h6M20 8c-2 5-9 8-9 16v3h18v-3c0-8-7-11-9-16Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 27h24v4H8zM10 31v16M30 31v16M15 47v-9a5 5 0 0 1 10 0v9M6 47h28" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5M7 11.5a1.5 1.5 0 1 0 0-.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2ZM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-pot" viewBox="0 0 24 24"><path d="M5 10h14v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-6ZM3 10h18M10 7h4M9 4c0 1 1 1 1 2M14 4c0 1 1 1 1 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16v2M19 16v2M3 16v-4l2-5h14l2 5v4H3ZM3 12h18M7 14h1M16 14h1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M3 9a13 13 0 0 1 18 0M6 12.5a8.5 8.5 0 0 1 12 0M9 16a4 4 0 0 1 6 0M12 19.5h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-wash" viewBox="0 0 24 24"><path d="M5 3h14v18H5zM5 7h14M8 5h.01M11 5h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="14" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+</svg>
+
+<script src="rooms.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
