@@ -15,9 +15,9 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.openstreetmap.org; connect-src 'self' https://api.open-meteo.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="fonts/fonts.css?v=202610291736">
+<link rel="stylesheet" href="fonts/fonts.css?v=202610291742">
 <link rel="preload" as="image" href="img/hero.jpg">
-<link rel="stylesheet" href="styles.css?v=202610291736">
+<link rel="stylesheet" href="styles.css?v=202610291742">
 </head>
 <body>
 
@@ -55,20 +55,12 @@
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__media scene" aria-hidden="true" data-scene>
     <img class="scene__photo" src="img/hero-1600.jpg" srcset="img/hero-1600.jpg 1600w, img/hero.jpg 2560w" sizes="100vw" alt="" width="2560" height="1706" fetchpriority="high">
-    <div class="scene__tint" data-tint></div>
-    <img class="scene__unlit" src="img/hero-1600.jpg" srcset="img/hero-1600.jpg 1600w, img/hero.jpg 2560w" sizes="100vw" alt="" width="2560" height="1706">
-    <img class="scene__lights" src="img/hero-1600.jpg" srcset="img/hero-1600.jpg 1600w, img/hero.jpg 2560w" sizes="100vw" alt="" width="2560" height="1706" data-lights>
-    <div class="scene__sky" data-sky>
-      <div class="scene__grad"></div>
-      <img class="sky" data-layer="night" data-src="img/sky-night.jpg" alt="">
-      <img class="sky" data-layer="dawn" data-src="img/sky-dawn.jpg" alt="">
-      <img class="sky" data-layer="day" data-src="img/sky-day.jpg" alt="">
-      <img class="sky" data-layer="clouds" data-src="img/sky-clouds.jpg" alt="">
-      <img class="sky" data-layer="overcast" data-src="img/sky-overcast.jpg" alt="">
-      <div class="scene__sun" data-sun></div>
-      <div class="scene__moon" data-moon></div>
-    </div>
-    <div class="scene__fog" data-fog></div>
+    <div class="scene__night"></div>
+    <div class="scene__haze"></div>
+    <img class="scene__lights" src="img/hero-1600.jpg" srcset="img/hero-1600.jpg 1600w, img/hero.jpg 2560w" sizes="100vw" alt="" width="2560" height="1706">
+    <canvas class="scene__stars" data-stars></canvas>
+    <div class="scene__moon"></div>
+    <div class="scene__fog"></div>
     <canvas class="scene__weather" data-weather></canvas>
   </div>
   <div class="hero__shade" aria-hidden="true"></div>
@@ -276,8 +268,8 @@
   <symbol id="i-wash" viewBox="0 0 24 24"><path d="M5 3h14v18H5zM5 7h14M8 5h.01M11 5h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="14" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
 </svg>
 
-<script src="rooms.js?v=202610291736"></script>
-<script src="scene.js?v=202610291736"></script>
-<script src="main.js?v=202610291736"></script>
+<script src="rooms.js?v=202610291742"></script>
+<script src="scene.js?v=202610291742"></script>
+<script src="main.js?v=202610291742"></script>
 </body>
 </html>

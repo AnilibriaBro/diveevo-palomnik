@@ -91,39 +91,29 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero__media { position: absolute; inset: 0; }
 .hero__media { animation: drift 26s var(--ease) both; }
 
-/* Живая обложка: фото дома + настоящее небо по солнцу над Дивеево + погода */
+/* Живая обложка: настоящее фото дома + свет по времени суток и погода в Дивеево.
+   Небо не вырезается — меняется только свет всего кадра, поэтому нет кривых краёв. */
 .scene { --pos: 50% 40%; overflow: hidden; background: #1d2b33; }
-.scene > *, .scene__sky > .scene__grad { position: absolute; inset: 0; width: 100%; height: 100%; }
-.scene__photo, .scene__lights, .scene__unlit { object-fit: cover; object-position: var(--pos); }
-/* днём окна «выключены»: тёплое свечение заменяется спокойным светлым стеклом */
-.scene__unlit {
-  -webkit-mask: url(img/hero-lights.png) var(--pos) / cover no-repeat; mask: url(img/hero-lights.png) var(--pos) / cover no-repeat;
-  filter: brightness(.82) saturate(.3) contrast(1.05); opacity: var(--unlit, 0); transition: opacity 2.5s ease, filter 2.5s ease;
+.scene > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.scene__photo, .scene__lights { object-fit: cover; object-position: var(--pos); }
+.scene__photo { filter: var(--grade, none); transition: filter 3s ease; }
+/* ночь: кадр темнеет сверху сильнее, как настоящее ночное небо */
+.scene__night {
+  background: linear-gradient(180deg, rgba(6, 12, 30, .92) 0%, rgba(8, 16, 38, .62) 38%, rgba(10, 16, 32, .42) 70%, rgba(6, 10, 20, .55) 100%);
+  mix-blend-mode: multiply; opacity: var(--night, 0); transition: opacity 3s ease;
 }
-.scene__photo { filter: var(--grade, none); transition: filter 2.5s ease; }
-.scene__tint { background: var(--tint, transparent); mix-blend-mode: multiply; opacity: var(--tint-a, 0); transition: opacity 2.5s ease, background-color 2.5s ease; }
+/* пасмурно: небо и даль затягивает серой дымкой */
+.scene__haze { background: linear-gradient(180deg, rgba(128, 136, 146, .78) 0%, rgba(128, 136, 146, .4) 26%, rgba(128, 136, 146, .08) 48%, transparent 66%); opacity: var(--haze, 0); transition: opacity 3s ease; }
+/* окна и фонари продолжают светиться, когда вокруг темнеет */
 .scene__lights {
   -webkit-mask: url(img/hero-lights.png) var(--pos) / cover no-repeat; mask: url(img/hero-lights.png) var(--pos) / cover no-repeat;
-  mix-blend-mode: screen; opacity: var(--lights, 0); filter: saturate(1.2); transition: opacity 2.5s ease;
+  mix-blend-mode: screen; opacity: var(--lights, 0); transition: opacity 3s ease;
 }
-.scene__sky {
-  -webkit-mask: url(img/hero-sky.png) var(--pos) / cover no-repeat; mask: url(img/hero-sky.png) var(--pos) / cover no-repeat;
-  opacity: var(--sky-a, 0); transition: opacity 2.5s ease;
-}
-.scene__grad { background: linear-gradient(180deg, var(--g1, #0b1430) 0%, var(--g2, #2a3658) 60%, var(--g3, #50597a) 100%); transition: background 2.5s ease; }
-.sky {
-  position: absolute; top: 0; left: -8%; width: 116%; max-width: none; height: 64%; object-fit: cover; object-position: 50% 100%;
-  opacity: 0; filter: var(--f, none); transition: opacity 2.5s ease, filter 2.5s ease;
-  -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent); mask-image: linear-gradient(180deg, #000 78%, transparent);
-  animation: pan 200s ease-in-out infinite alternate;
-}
-@keyframes pan { from { transform: translateX(-3.5%); } to { transform: translateX(3.5%); } }
-.scene__sun, .scene__moon { position: absolute; border-radius: 50%; translate: -50% -50%; transition: opacity 3s ease, left 3s ease, top 3s ease; }
-.scene__sun { left: var(--sx, 75%); top: var(--sy, 30%); width: 7vmin; height: 7vmin; background: radial-gradient(circle, #fffdf2 0 32%, rgba(255, 240, 200, .6) 44%, rgba(255, 220, 160, 0) 72%); box-shadow: 0 0 140px 70px rgba(255, 222, 170, .28); opacity: var(--sun, 0); }
-.scene__moon { left: 80%; top: 17%; width: 3.6vmin; height: 3.6vmin; background: radial-gradient(circle at 40% 40%, #fdf9ec 0 55%, #e2dac2 80%); box-shadow: 0 0 36px 8px rgba(240, 236, 220, .22); opacity: var(--moon, 0); }
-.scene__fog { background: linear-gradient(180deg, rgba(214, 220, 226, .2) 0%, rgba(214, 220, 226, .62) 70%, rgba(214, 220, 226, .4) 100%); opacity: var(--fog, 0); transition: opacity 3s ease; }
+.scene__stars { opacity: var(--stars, 0); transition: opacity 4s ease; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 12%, transparent 30%); mask-image: linear-gradient(180deg, #000 0%, #000 12%, transparent 30%); }
+.scene__moon { width: 3.4vmin; height: 3.4vmin; inset: auto; left: 86%; top: 13%; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #fdf9ec 0 55%, #e2dac2 80%); box-shadow: 0 0 34px 8px rgba(240, 236, 220, .2); opacity: var(--moon, 0); transition: opacity 4s ease; }
+.scene__fog { background: linear-gradient(180deg, rgba(214, 220, 226, .25) 0%, rgba(214, 220, 226, .6) 65%, rgba(214, 220, 226, .35) 100%); opacity: var(--fog, 0); transition: opacity 3s ease; }
 .scene__weather { pointer-events: none; }
-.scene.is-flash .scene__tint { background: #fff; opacity: .45; mix-blend-mode: screen; transition: none; }
+.scene.is-flash .scene__night { background: #fff; opacity: .4; mix-blend-mode: screen; transition: none; }
 @keyframes drift { from { transform: scale(1.05); } to { transform: scale(1.0); } }
 .hero__shade { position: absolute; inset: 0; background:
   linear-gradient(180deg, rgba(16,26,40,var(--shade-top, .62)) 0%, rgba(16,26,40,.18) 34%, rgba(16,26,40,0) 52%, rgba(16,22,26,.6) 100%); }
@@ -320,7 +310,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   body { font-size: 16px; }
   .hero__line { display: block; }
   .hero__title { font-size: clamp(44px, 14vw, 60px); }
-  .scene__moon { left: 86%; top: 33%; width: 6vmin; height: 6vmin; }
+  .scene__moon { left: 86%; top: 9%; width: 6vmin; height: 6vmin; }
   .pond { height: 560px; }
   .pond__body { top: 50%; }
   .steps__list { grid-template-columns: 1fr; }
@@ -350,7 +340,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
   .pond__reflect { filter: blur(.6px); }
   .pond__img { transform: none; }
-  .sky { animation: none; }
+
   .reveal { clip-path: none; }
 }
 

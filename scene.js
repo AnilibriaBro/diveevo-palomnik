@@ -1,4 +1,4 @@
-// Живая обложка: небо, свет и погода — как сейчас в Дивеево.
+// Живая обложка: свет и погода — как сейчас в Дивеево. Фото дома не меняется, меняется только свет кадра.
 // Высота солнца считается по координатам дома, погода — Open-Meteo (бесплатно, без ключа).
 // Для показа: ?time=06:30 (московское время) и ?weather=clear|clouds|overcast|rain|snow|fog|storm
 (() => {
@@ -9,7 +9,6 @@
   const params = new URLSearchParams(location.search);
   const $ = s => scene.querySelector(s);
   const hero = scene.closest('.hero');
-  const layers = Object.fromEntries([...scene.querySelectorAll('[data-layer]')].map(el => [el.dataset.layer, el]));
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const ramp = (v, a, b) => clamp((v - a) / (b - a));           // 0 → 1 между a и b
   const mix = (a, b, t) => a + (b - a) * t;
@@ -77,73 +76,53 @@
 
   // --- Сборка кадра
   const set = (k, v) => scene.style.setProperty(k, v);
-  function load(name) {
-    const el = layers[name];
-    if (el && !el.src) el.src = el.dataset.src;
-  }
   function render() {
-    const { alt, morning } = sun(now());
+    const { alt } = sun(now());
     const k = weather.kind;
     const grey = ['overcast', 'rain', 'snow', 'fog', 'storm'].includes(k);
+    const night = 1 - ramp(alt, -12, -4);          // 0 днём и вечером, 1 глубокой ночью
+    const dusk = ramp(alt, -12, -4) * (1 - ramp(alt, -4, 0)); // поздние сумерки
+    const dim = Math.max(night, dusk * .45);
 
-    // доли состояний: ночь, сумерки, «как на фото» (вечер), рассвет, день
-    const day = ramp(alt, 3, 14);
-    const night = 1 - ramp(alt, -13, -7);
-    const glow = clamp(1 - Math.abs(alt + 1) / 8) * (1 - night);   // вечерняя/утренняя зорька
-    const photo = morning || grey ? 0 : glow;                        // своё небо фото — только ясным вечером
-    const dawn = morning && !grey ? glow : 0;
-
-    // слои неба
-    const op = { night: 0, dawn: 0, day: 0, clouds: 0, overcast: 0 };
-    op.night = grey ? 0 : night;
-    op.dawn = dawn;
-    const dayLayer = grey ? 'overcast' : k === 'clouds' ? 'clouds' : 'day';
-    op[dayLayer] = Math.max(op[dayLayer], grey ? 1 - night * .15 : day);
-    for (const [name, el] of Object.entries(layers)) {
-      if (op[name] > 0) load(name);
-      el.style.opacity = op[name].toFixed(3);
-    }
-    // цвет неба: ночью пасмурное небо — тёмное, днём — светлее
-    const skyB = mix(mix(.55, 1, day), .22, night);
-    layers.overcast.style.setProperty('--f', `brightness(${skyB.toFixed(2)}) saturate(${grey ? .85 : 1})`);
-    layers.day.style.setProperty('--f', `brightness(${mix(.85, 1.02, day).toFixed(2)})`);
-    layers.clouds.style.setProperty('--f', `brightness(${mix(.8, 1, day).toFixed(2)})`);
-    layers.night.style.setProperty('--f', `brightness(${mix(1.25, .95, ramp(-alt, 7, 16)).toFixed(2)})`);
-    layers.dawn.style.setProperty('--f', `brightness(${mix(.75, 1.05, ramp(alt, -6, 2)).toFixed(2)})`);
-    // градиент под небом — для сумерек
-    // три набора цветов: ночь → сумерки → день
-    const tw = clamp(1 - day - night);
-    const pal = (n, t, d) => n.map((v, i) => Math.round(v * night + t[i] * tw + d[i] * day));
-    const rgb = a => `rgb(${a.join(', ')})`;
-    set('--g1', rgb(pal([11, 20, 48], [44, 66, 112], [86, 140, 204])));
-    set('--g2', rgb(pal([30, 40, 70], [112, 112, 150], [140, 186, 230])));
-    set('--g3', rgb(pal([52, 60, 88], [222, 160, 140], [196, 222, 242])));
-    set('--sky-a', (1 - photo).toFixed(3));
-
-    // дом: яркость, насыщенность, оттенок; окна светятся в темноте
-    const b = mix(mix(1, 1.3, day), .4, night) * (grey ? mix(1, .85, day) : 1);
-    const s = mix(mix(1, .92, day), .7, night) * (grey ? .82 : 1);
-    set('--grade', `brightness(${b.toFixed(2)}) saturate(${s.toFixed(2)}) contrast(${mix(mix(1, .95, day), 1.06, night).toFixed(2)})`);
-    set('--tint', night > .2 ? '#3d5285' : day > .5 ? (grey ? '#c9d2da' : '#dbe7f7') : '#ffd2a0');
-    set('--tint-a', (night > .2 ? .42 * night : day > .5 ? .18 * day : .14 * glow).toFixed(3));
-    set('--lights', clamp(mix(.15, .9, night + glow * .4) - day * .6).toFixed(3));
-    set('--unlit', (day * .75).toFixed(3));
-    hero && hero.style.setProperty('--shade-top', mix(.62, .32, day).toFixed(2));
-
-    // солнце и луна
-    const sunVisible = !grey && alt > -1.5 && alt < 40 && !photo;
-    set('--sun', sunVisible ? (.55 + .45 * ramp(alt, -1, 6)).toFixed(2) : 0);
-    set('--sx', morning ? '22%' : '78%');
-    set('--sy', `${mix(46, 8, ramp(alt, 0, 32)).toFixed(1)}%`);
-    set('--moon', (!grey && night > .6) ? .95 : 0);
+    // весь кадр: ночью темнее и холоднее, в непогоду — приглушённее
+    const b = mix(1, .58, dim) * (grey ? .9 : 1);
+    const sat = mix(1, .72, dim) * (grey ? .72 : 1);
+    set('--grade', `brightness(${b.toFixed(3)}) saturate(${sat.toFixed(3)})`);
+    set('--night', dim.toFixed(3));
+    set('--haze', grey ? mix(.85, .45, dim).toFixed(3) : 0);
+    set('--lights', clamp(.15 + dim * .85).toFixed(3));
+    set('--stars', !grey && night > .3 ? night.toFixed(3) : 0);
+    set('--moon', !grey && night > .6 ? .9 : 0);
+    hero && hero.style.setProperty('--shade-top', mix(.5, .25, dim).toFixed(2));
+    if (scene.style.getPropertyValue('--stars') !== '0') stars();
 
     // погода
-    set('--fog', k === 'fog' ? mix(.75, .55, day) : k === 'snow' ? .25 : 0);
+    set('--fog', k === 'fog' ? .7 : k === 'snow' ? .2 : 0);
     particles.kind = k === 'storm' ? 'rain' : k;
     particles.amount = clamp((weather.amount || 1) / 3, .35, 1);
     particles.wind = Math.min(weather.wind || 2, 10);
     particles.reset();
     storm(k === 'storm');
+  }
+
+  // --- Звёзды: рисуются один раз, мерцание — мягкое
+  const sc = $('[data-stars]');
+  let starsDone = false;
+  function stars() {
+    if (starsDone) return;
+    starsDone = true;
+    const W = sc.width = scene.clientWidth * devicePixelRatio;
+    const H = sc.height = scene.clientHeight * devicePixelRatio;
+    const g = sc.getContext('2d');
+    let seed = 7;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const n = Math.round(W * H / 5200);
+    for (let i = 0; i < n; i++) {
+      const x = rnd() * W, y = rnd() * H * .32, r = (rnd() ** 3 * 1.3 + .35) * devicePixelRatio;
+      g.globalAlpha = .35 + rnd() * .65;
+      g.fillStyle = rnd() > .85 ? '#ffe9c4' : '#f4f7ff';
+      g.beginPath(); g.arc(x, y, r, 0, 6.283); g.fill();
+    }
   }
 
   // --- Дождь и снег
@@ -226,7 +205,7 @@
     }).observe(scene);
   }
   let rt = 0;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => particles.reset(), 200); });
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { particles.reset(); starsDone = false; render(); }, 200); });
 
   render();                                    // сразу — по времени, погода догонит
   loadWeather().then(render);
