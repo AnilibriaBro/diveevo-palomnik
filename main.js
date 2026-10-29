@@ -167,8 +167,15 @@
       prev.disabled = strip.scrollLeft < 4;
       next.disabled = strip.scrollLeft + strip.clientWidth > strip.scrollWidth - 4;
     };
+    // Переход к соседнему кадру: точная позиция, иначе «примагничивание» возвращает ленту назад
+    const pad = () => parseFloat(getComputedStyle(strip).scrollPaddingLeft) || 0;
     [prev, next].forEach(b => b.addEventListener('click', () => {
-      strip.scrollBy({ left: Number(b.dataset.stripStep) * strip.clientWidth * .8, behavior: reduce ? 'auto' : 'smooth' });
+      const x = strip.scrollLeft + pad();
+      const starts = $$('figure', strip).map(f => f.offsetLeft - strip.offsetLeft);
+      const target = Number(b.dataset.stripStep) > 0
+        ? starts.find(s => s > x + 8)
+        : [...starts].reverse().find(s => s < x - 8);
+      strip.scrollTo({ left: (target ?? (Number(b.dataset.stripStep) > 0 ? strip.scrollWidth : 0)) - pad(), behavior: reduce ? 'auto' : 'smooth' });
     }));
     strip.addEventListener('scroll', sync, { passive: true });
     addEventListener('resize', sync);
