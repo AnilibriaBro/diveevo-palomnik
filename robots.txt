@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://anilibriabro.github.io/diveevo-palomnik/sitemap.xml
