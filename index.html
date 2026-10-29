@@ -27,7 +27,7 @@
   <div class="top__in">
     <a class="brand" href="#" aria-label="Дивеевский паломник — на главную">
       <svg class="brand__mark" viewBox="0 0 40 48" aria-hidden="true"><use href="#dome"/></svg>
-      <span class="brand__name">Дивеевский паломник<small>гостевой дом</small></span>
+      <span class="brand__name" translate="no">Дивеевский паломник<small>гостевой дом</small></span>
     </a>
     <nav class="nav" aria-label="Разделы">
       <a href="#dom">О доме</a>
@@ -70,11 +70,11 @@
   <form class="search" action="booking.html" method="get" data-search>
     <label class="search__field">
       <span>Заезд</span>
-      <input type="date" name="from" required data-from>
+      <input type="date" name="from" autocomplete="off" required data-from>
     </label>
     <label class="search__field">
       <span>Выезд</span>
-      <input type="date" name="to" required data-to>
+      <input type="date" name="to" autocomplete="off" required data-to>
     </label>
     <div class="search__field search__field--guests">
       <span id="guests-label">Гостей</span>
@@ -155,12 +155,16 @@
       <p>Четвёртый удел Богородицы. От дома до монастыря — прогулка вдоль пруда, в котором отражаются купола.</p>
     </div>
   </div>
-  <div class="strip" data-strip tabindex="0" aria-label="Фотографии Дивеева, листайте в сторону">
+  <div class="strip" data-strip tabindex="0" aria-label="Фотографии Дивеева">
     <figure><img src="img/place-1.jpg" alt="Соборы Дивеевского монастыря" loading="lazy" width="1600" height="1053"><figcaption>Соборы монастыря</figcaption></figure>
     <figure><img src="img/place-3.jpg" alt="Колокольня монастыря на фоне розового неба" loading="lazy" width="1600" height="1361"><figcaption>Колокольня</figcaption></figure>
     <figure><img src="img/place-4.jpg" alt="Монастырь отражается в пруду" loading="lazy" width="1600" height="1047"><figcaption>Отражение в пруду</figcaption></figure>
     <figure><img src="img/place-5.jpg" alt="Собор вечером, при луне" loading="lazy" width="1600" height="1217"><figcaption>Вечер у собора</figcaption></figure>
     <figure><img src="img/place-6.jpg" alt="Монастырский сад с деревянными крестами" loading="lazy" width="1600" height="1067"><figcaption>Монастырский сад</figcaption></figure>
+  </div>
+  <div class="wrap strip-nav">
+    <button type="button" aria-label="Предыдущие фото" data-strip-step="-1">‹</button>
+    <button type="button" aria-label="Следующие фото" data-strip-step="1">›</button>
   </div>
   <div class="wrap place__cols">
     <div>

@@ -32,6 +32,8 @@ body {
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
+a, button, input, label { touch-action: manipulation; -webkit-tap-highlight-color: rgba(184, 138, 59, .18); }
+body:has(.lightbox[open]) { overflow: hidden; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.12; margin: 0; text-wrap: balance; }
 h2 { font-size: clamp(32px, 4.6vw, 54px); letter-spacing: -.01em; }
 h3 { font-size: 23px; }
@@ -94,9 +96,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .hero__body { position: relative; align-self: start; text-align: center; padding: clamp(104px, 13vh, 150px) var(--gutter) 24px; }
 .hero__title { font: 400 clamp(52px, 7.4vw, 116px)/.95 var(--serif); letter-spacing: -.015em; text-shadow: 0 2px 34px rgba(10, 20, 30, .45); }
 .hero__line { display: inline-block; margin: 0 .12em; }
-.hero__title .hero__line { opacity: 0; transform: translateY(.35em); filter: blur(8px); animation: rise 1.6s var(--ease) forwards; }
+.hero__title .hero__line { opacity: 0; transform: translateY(.35em); animation: rise 1.6s var(--ease) forwards; }
 .hero__title .hero__line:nth-child(2) { animation-delay: .25s; font-style: italic; color: #f6dfb0; }
-@keyframes rise { to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes rise { to { opacity: 1; transform: none; } }
 .hero__lead { position: relative; z-index: 2; text-align: center; max-width: calc(42em + 2 * var(--gutter)); margin: 0 auto 18px; padding: 0 var(--gutter); font-size: clamp(17px, 1.6vw, 19px); text-shadow: 0 1px 16px rgba(10, 20, 30, .5); opacity: 0; animation: rise 1.2s .9s var(--ease) forwards; }
 
 /* Пруд: название отражается в воде */
@@ -250,7 +252,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .float-book { display: none; }
 
 /* Просмотр фото */
-.lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; }
+.lightbox { overscroll-behavior: contain; border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; }
 .lightbox::backdrop { background: rgba(14, 22, 28, .92); }
 .lightbox[open] { display: grid; place-items: center; animation: fade .3s var(--ease); }
 @keyframes fade { from { opacity: 0; } }
@@ -302,7 +304,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   .about__photos { aspect-ratio: 1 / 1.05; }
   .float-book {
     display: flex; position: fixed; left: 16px; right: 16px; bottom: 14px; z-index: 40; justify-content: center; align-items: center;
-    min-height: 54px; border-radius: 999px; background: var(--gold); color: var(--white); text-decoration: none; font-weight: 500;
+    min-height: 54px; margin-bottom: env(safe-area-inset-bottom); border-radius: 999px; background: var(--gold); color: var(--white); text-decoration: none; font-weight: 500;
     box-shadow: 0 14px 30px -10px rgba(10,20,26,.5); transform: translateY(140%); transition: transform .4s var(--ease);
   }
   .float-book.is-on { transform: none; }
@@ -339,3 +341,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Стрелки ленты «Дивеево рядом» */
+.strip-nav { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+.strip-nav button { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35); background: transparent; color: var(--white); font-size: 22px; line-height: 1; cursor: pointer; transition: background-color .2s var(--ease), border-color .2s var(--ease); }
+.strip-nav button:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+.strip-nav button:disabled { opacity: .35; cursor: default; }

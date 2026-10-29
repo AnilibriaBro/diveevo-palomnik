@@ -159,5 +159,21 @@
     $$('[data-pond]').forEach(el => el.classList.add('is-in'));
   }
 
+  // Стрелки ленты фото Дивеева
+  const strip = $('[data-strip]');
+  if (strip) {
+    const prev = $('[data-strip-step="-1"]'), next = $('[data-strip-step="1"]');
+    const sync = () => {
+      prev.disabled = strip.scrollLeft < 4;
+      next.disabled = strip.scrollLeft + strip.clientWidth > strip.scrollWidth - 4;
+    };
+    [prev, next].forEach(b => b.addEventListener('click', () => {
+      strip.scrollBy({ left: Number(b.dataset.stripStep) * strip.clientWidth * .8, behavior: reduce ? 'auto' : 'smooth' });
+    }));
+    strip.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+    sync();
+  }
+
   $$('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 })();
