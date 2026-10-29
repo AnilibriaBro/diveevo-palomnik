@@ -12,12 +12,12 @@
 <link rel="canonical" href="https://anilibriabro.github.io/diveevo-palomnik/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1d2b33">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.openstreetmap.org; connect-src 'self' https://api.open-meteo.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.openstreetmap.org; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="fonts/fonts.css?v=202610291742">
+<link rel="stylesheet" href="fonts/fonts.css?v=202610291808">
 <link rel="preload" as="image" href="img/hero.jpg">
-<link rel="stylesheet" href="styles.css?v=202610291742">
+<link rel="stylesheet" href="styles.css?v=202610291808">
 </head>
 <body>
 
@@ -53,15 +53,8 @@
 <main id="main">
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero__media scene" aria-hidden="true" data-scene>
-    <img class="scene__photo" src="img/hero-1600.jpg" srcset="img/hero-1600.jpg 1600w, img/hero.jpg 2560w" sizes="100vw" alt="" width="2560" height="1706" fetchpriority="high">
-    <div class="scene__night"></div>
-    <div class="scene__haze"></div>
-    <img class="scene__lights" src="img/hero-1600.jpg" srcset="img/hero-1600.jpg 1600w, img/hero.jpg 2560w" sizes="100vw" alt="" width="2560" height="1706">
-    <canvas class="scene__stars" data-stars></canvas>
-    <div class="scene__moon"></div>
-    <div class="scene__fog"></div>
-    <canvas class="scene__weather" data-weather></canvas>
+  <div class="hero__media" aria-hidden="true">
+    <img src="img/hero-1600.jpg" srcset="img/hero-1600.jpg 1600w, img/hero.jpg 2560w" sizes="100vw" alt="" width="2560" height="1706" fetchpriority="high">
   </div>
   <div class="hero__shade" aria-hidden="true"></div>
 
@@ -268,8 +261,7 @@
   <symbol id="i-wash" viewBox="0 0 24 24"><path d="M5 3h14v18H5zM5 7h14M8 5h.01M11 5h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="14" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
 </svg>
 
-<script src="rooms.js?v=202610291742"></script>
-<script src="scene.js?v=202610291742"></script>
-<script src="main.js?v=202610291742"></script>
+<script src="rooms.js?v=202610291808"></script>
+<script src="main.js?v=202610291808"></script>
 </body>
 </html>

@@ -89,34 +89,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 /* Первый экран */
 .hero { position: relative; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto auto; color: var(--white); overflow: hidden; background: var(--dusk); }
 .hero__media { position: absolute; inset: 0; }
-.hero__media { animation: drift 26s var(--ease) both; }
-
-/* Живая обложка: настоящее фото дома + свет по времени суток и погода в Дивеево.
-   Небо не вырезается — меняется только свет всего кадра, поэтому нет кривых краёв. */
-.scene { --pos: 50% 40%; overflow: hidden; background: #1d2b33; }
-.scene > * { position: absolute; inset: 0; width: 100%; height: 100%; }
-.scene__photo, .scene__lights { object-fit: cover; object-position: var(--pos); }
-.scene__photo { filter: var(--grade, none); transition: filter 3s ease; }
-/* ночь: кадр темнеет сверху сильнее, как настоящее ночное небо */
-.scene__night {
-  background: linear-gradient(180deg, rgba(6, 12, 30, .92) 0%, rgba(8, 16, 38, .62) 38%, rgba(10, 16, 32, .42) 70%, rgba(6, 10, 20, .55) 100%);
-  mix-blend-mode: multiply; opacity: var(--night, 0); transition: opacity 3s ease;
-}
-/* пасмурно: небо и даль затягивает серой дымкой */
-.scene__haze { background: linear-gradient(180deg, rgba(128, 136, 146, .78) 0%, rgba(128, 136, 146, .4) 26%, rgba(128, 136, 146, .08) 48%, transparent 66%); opacity: var(--haze, 0); transition: opacity 3s ease; }
-/* окна и фонари продолжают светиться, когда вокруг темнеет */
-.scene__lights {
-  -webkit-mask: url(img/hero-lights.png) var(--pos) / cover no-repeat; mask: url(img/hero-lights.png) var(--pos) / cover no-repeat;
-  mix-blend-mode: screen; opacity: var(--lights, 0); transition: opacity 3s ease;
-}
-.scene__stars { opacity: var(--stars, 0); transition: opacity 4s ease; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 12%, transparent 30%); mask-image: linear-gradient(180deg, #000 0%, #000 12%, transparent 30%); }
-.scene__moon { width: 3.4vmin; height: 3.4vmin; inset: auto; left: 86%; top: 13%; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #fdf9ec 0 55%, #e2dac2 80%); box-shadow: 0 0 34px 8px rgba(240, 236, 220, .2); opacity: var(--moon, 0); transition: opacity 4s ease; }
-.scene__fog { background: linear-gradient(180deg, rgba(214, 220, 226, .25) 0%, rgba(214, 220, 226, .6) 65%, rgba(214, 220, 226, .35) 100%); opacity: var(--fog, 0); transition: opacity 3s ease; }
-.scene__weather { pointer-events: none; }
-.scene.is-flash .scene__night { background: #fff; opacity: .4; mix-blend-mode: screen; transition: none; }
-@keyframes drift { from { transform: scale(1.05); } to { transform: scale(1.0); } }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
 .hero__shade { position: absolute; inset: 0; background:
-  linear-gradient(180deg, rgba(16,26,40,var(--shade-top, .62)) 0%, rgba(16,26,40,.18) 34%, rgba(16,26,40,0) 52%, rgba(16,22,26,.6) 100%); }
+  linear-gradient(180deg, rgba(16,26,40,.5) 0%, rgba(16,26,40,.18) 34%, rgba(16,26,40,0) 52%, rgba(16,22,26,.6) 100%); }
 .hero__body { position: relative; align-self: start; text-align: center; padding: clamp(104px, 13vh, 150px) var(--gutter) 24px; }
 .hero__title { font: 400 clamp(52px, 7.4vw, 116px)/.95 var(--serif); letter-spacing: -.015em; text-shadow: 0 2px 34px rgba(10, 20, 30, .45); }
 .hero__line { display: inline-block; margin: 0 .12em; }
@@ -310,7 +285,6 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   body { font-size: 16px; }
   .hero__line { display: block; }
   .hero__title { font-size: clamp(44px, 14vw, 60px); }
-  .scene__moon { left: 86%; top: 9%; width: 6vmin; height: 6vmin; }
   .pond { height: 560px; }
   .pond__body { top: 50%; }
   .steps__list { grid-template-columns: 1fr; }
